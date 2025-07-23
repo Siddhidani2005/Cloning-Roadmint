@@ -1,44 +1,42 @@
-.rain-container {
+.rain {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  pointer-events: none;
   overflow: hidden;
-}
-
-/* Optional thunder flash */
-.flash {
-  position: absolute;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  z-index: 1;
+  z-index: -1;
   pointer-events: none;
-  animation: flash 5s infinite;
 }
 
-@keyframes flash {
-  0%, 97%, 100% { opacity: 0; }
-  98% { opacity: 0.7; }
-  99% { opacity: 0; }
-}
-
-.raindrop {
+.drop {
   position: absolute;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.2);
-  top: -100px;
-  left: calc(100% * var(--i));
-  animation-name: fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-delay: calc(0.1s * var(--i));
-  transform: rotate(15deg);
-  filter: blur(0.5px); /* Subtle blur for realism */
+  top: -5%;
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(188, 187, 187, 0.922))transparent;
+  border : round;
+  transform: rotate(210deg);
+  animation-name: fall-diagonal;
+  animation-timing-function: ease-out; /* ⬅️ Fast to slow */
+  animation-fill-mode: forwards;
+  opacity: 0.3;
+}
+.stem {
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  border-radius: 500px; /* 👈 Smooth rounded end */
+  animation-name: fall-diagonal;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(15deg);
+
+@keyframes fall-diagonal {
+  0% {
+    transform: translate(0, 0) rotate(210deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-100px, 120vh) rotate(210deg);
+    opacity: 0;
   }
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import RainBg from "./RainBg";
-import Footer from "./Footer";
-import HeroSection from "./HeroSection";
+import { motion } from "framer-motion";
+
 
 export default function Header() {
   return (
-    <header className="relative bg-black text-white overflow-hidden">
+    <header className="relative bg-neutral-900 text-white overflow-hidden">
       {/* Rain Background as background layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <RainBg />
@@ -28,7 +28,7 @@ export default function Header() {
               decoding="async"
               className="w-10 mt-0.5"
               style={{ color: "transparent" }}
-              src="public/logo.webp"
+              src="/logo.webp"
             />
             Road
             <span className="text-[#60ff1c]">m</span>
@@ -39,12 +39,17 @@ export default function Header() {
           <button
             type="button"
             aria-label="Navigate"
-            className="text-gray-300 font-semibold cursor-pointer s:font-medium bg-neutral-800 hover:bg-neutral-900 hover:text-white border-2 border-neutral-700 duration-300 px-33ss lg:px-5 py-2 lg:py-2.5 rounded-lg hover:-translate-y-0.5 active:scale-95"
+            className="text-gray-300 font-semibold cursor-pointer s:font-medium bg-neutral-800 hover:bg-neutral-900 hover:text-white border-2 border-neutral-700 duration-300 px-33 lg:px-5 py-2 lg:py-2.5 rounded-lg hover:-translate-y-0.5 active:scale-95"
           >
             Your Desk
           </button>
         </nav>
       </div>
+            <div className=" pt-[110px] flex flex-wrap gap-2 justify-center">
+        {/* You can insert topic buttons or components here */}
+      </div>
+
     </header>
+    
   );
 }

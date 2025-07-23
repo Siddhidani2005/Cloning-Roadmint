@@ -1,8 +1,9 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-<footer className="relative overflow-hidden bg-black text-white">
+<footer className="s bg-neutral-900 text-white">
         <div className="relative z-10">
         <div className="w-full max-w-5xl px-4 xl:px-0 py-10 lg:pt-16 mx-auto">
           <div className="inline-flex items-center">
@@ -16,7 +17,7 @@ export default function Footer() {
                 data-nimg="1"
                 className="w-10 mt-0.5"
                 style={{ color: "transparent" }}
-                src="public\logo.webp"
+                src="\logo.webp"
               />
 
               Road

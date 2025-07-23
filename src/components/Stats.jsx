@@ -1,52 +1,40 @@
-import React from 'react';
-import { FaLightbulb, FaCodeBranch } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import "./rain.css";
 
-export default function Stats() {
-    return (
-        <div className="bg-black w-full min-h-screen px-2 md:px-4 py-10 space-y-6">
+const generateRaindrops = (count, width) =>
+  Array.from({ length: count }, () => ({
+    left: `${Math.floor(Math.random() * width)}px`,
+    delay: `${(Math.random() * 5).toFixed(2)}s`,
+    duration: `${(Math.random() * 6 + 4).toFixed(2)}s`,
+    id: Math.random().toString(36).substr(2, 9),
+  }));
 
-            {/* Daily Tip */}
-            <div className="bg-[#262626] rounded-lg mx-auto p-6 md:p-8 shadow-md">
-                <p className="text-lg font-medium text-gray-300 mb-3 flex items-center gap-2">
-                    <FaLightbulb className="text-indigo-400" />
-                    Daily Tip :
-                </p>
-                <p className="text-white font-bold text-xl">
-                    You don’t need a CS degree to be a great dev.
-                </p>
-            </div>
+const RainDropEffect = () => {
+  const [raindrops, setRaindrops] = useState([]);
+  const [screenWidth, setScreenWidth] = useState(1280);
 
-            {/* Fun Developer Stat */}
-            <div className="bg-[#262626] rounded-lg mx-auto p-6 md:p-8 shadow-md">
-                <p className="text-lg font-medium text-gray-300 mb-3 flex items-center gap-2">
-                    <FaCodeBranch className="text-indigo-400" />
-                    Fun Developer Stat :
-                </p>
-                <p className="text-white font-bold text-xl">
-                    60% of developers learned programming through online tutorials and YouTube.
-                </p>
-            </div>
+  useEffect(() => {
+    const width = window.innerWidth;
+    setScreenWidth(width);
+    setRaindrops(generateRaindrops(80, width));
+  }, []);
 
-            {/* Daily Trivia */}
-            <div className="bg-[#262626] rounded-lg mx-auto p-6 md:p-8 shadow-md">
-                <p className="text-lg font-medium text-gray-300 mb-3 flex items-center gap-2">
-                    <FaLightbulb className="text-indigo-400" />
-                    Daily Trivia :
-                </p>
-                <p className="text-white font-bold text-xl mb-4">
-                    What five letter word is the motto of the IBM Computer company?
-                </p>
-                <div className="flex flex-wrap gap-4">
-                    {["Pixel", "Think", "Logic", "Click"].map((option, index) => (
-                        <button
-                            key={index}
-                            className="bg-neutral-700 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-neutral-600 transition-all duration-150"
-                        >
-                            {option}
-                        </button>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
+  return (
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      {raindrops.map((drop) => (
+        <span
+          key={drop.id}
+          style={{
+            top: "-10%",
+            left: drop.left,
+            animationDelay: drop.delay,
+            animationDuration: drop.duration,
+          }}
+          className="raindrop"
+        />
+      ))}
+    </div>
+  );
+};
+
+export default RainDropEffect;
